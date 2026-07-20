@@ -8,6 +8,13 @@ vi.mock('@actions/core', () => ({
   getInput: (...args: unknown[]) => mockGetInput(...args),
   setOutput: (...args: unknown[]) => mockSetOutput(...args),
   setFailed: (...args: unknown[]) => mockSetFailed(...args),
+  info: vi.fn(),
+  error: vi.fn(),
+}));
+
+vi.mock('axios', () => ({
+  default: {post: vi.fn().mockResolvedValue({status: 200})},
+  isAxiosError: vi.fn().mockReturnValue(false),
 }));
 
 vi.mock('../src/search', () => ({
@@ -32,6 +39,12 @@ async function runAction(): Promise<void> {
     getInput: (...args: unknown[]) => mockGetInput(...args),
     setOutput: (...args: unknown[]) => mockSetOutput(...args),
     setFailed: (...args: unknown[]) => mockSetFailed(...args),
+    info: vi.fn(),
+    error: vi.fn(),
+  }));
+  vi.doMock('axios', () => ({
+    default: {post: vi.fn().mockResolvedValue({status: 200})},
+    isAxiosError: vi.fn().mockReturnValue(false),
   }));
   vi.doMock('../src/search', () => ({
     versionConstraintSearch: mockSearch,
