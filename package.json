@@ -1,6 +1,6 @@
 {
   "name": "terraform-min-max",
-  "version": "0.0.0",
+  "version": "3.0.1",
   "private": true,
   "description": "GitHub action used to evaluate the Terraform minimum and maximum versions permitted",
   "keywords": [

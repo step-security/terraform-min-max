@@ -116,11 +116,3 @@ npm run lint
 # Compile dist/index.js
 npm run compile
 ```
-
-## Contributing
-
-Please read [CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md) for details on our code of conduct and the process for submitting pull requests.
-
-## Changelog
-
-Please see the [GitHub releases](https://github.com/step-security/terraform-min-max/releases) for details on individual releases.
