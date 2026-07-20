@@ -8,16 +8,16 @@
     "actions",
     "terraform"
   ],
-  "homepage": "https://github.com/clowdhaus/terraform-min-max#readme",
+  "homepage": "https://github.com/step-security/terraform-min-max#readme",
   "bugs": {
-    "url": "https://github.com/clowdhaus/terraform-min-max/issues"
+    "url": "https://github.com/step-security/terraform-min-max/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/clowdhaus/terraform-min-max.git"
+    "url": "git+https://github.com/step-security/terraform-min-max.git"
   },
   "license": "Apache-2.0",
-  "author": "Clowd Haus, LLC",
+  "author": "step-security",
   "main": "src/index.ts",
   "scripts": {
     "all": "npm run lint && npm run test && npm run compile",
@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@actions/core": "^3.0.1",
+    "axios": "^1.18.0",
     "semver": "^7.8.5"
   },
   "devDependencies": {

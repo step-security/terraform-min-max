@@ -1,5 +1,5 @@
 name: Terraform Min/Max
-author: Clowd Haus, LLC
+author: 'step-security'
 description: GitHub action used to evaluate the Terraform minimum and maximum versions permitted
 branding:
   icon: terminal
