@@ -1,1 +1,85 @@
-# terraform-min-max
+[![StepSecurity Maintained Action](https://raw.githubusercontent.com/step-security/maintained-actions-assets/main/assets/maintained-action-banner.png)](https://docs.stepsecurity.io/actions/stepsecurity-maintained-actions)
+
+<p align="center">
+  <img src=".github/terraform.png" alt="terraform" height="364px">
+</p>
+<h1 style="font-size: 56px; margin: 0; padding: 0;" align="center">
+  terraform-min-max
+</h1>
+<p align="center">
+  <img src="https://badgen.net/badge/TypeScript/strict%20%F0%9F%92%AA/blue" alt="Strict TypeScript">
+</p>
+<p align="center">
+  <a href="https://github.com/step-security/terraform-min-max/actions?query=workflow%3Aintegration">
+    <img src="https://github.com/step-security/terraform-min-max/workflows/integration/badge.svg?branch=main" alt="integration">
+  </a>
+</p>
+
+GitHub action used to evaluate the Terraform minimum and maximum versions permitted
+
+## Usage
+
+```yml
+steps:
+  - name: Checkout
+    uses: actions/checkout@v7
+
+  - name: Extract Terraform min/max versions
+    id: minMax
+    uses: step-security/terraform-min-max@v3
+    with:
+      # The project root directory (.) is used as the default
+      directory: .
+outputs:
+  minVersion: ${{ steps.minMax.outputs.minVersion }}
+  maxVersion: ${{ steps.minMax.outputs.maxVersion }}
+```
+
+## Scenarios
+
+### Extract minimum and maximum permitted versions of Terraform for use in matrix pipelines
+
+```yml
+jobs:
+  versionExtract:
+    name: Extract Min/Max Versions
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Extract Terraform min/max versions
+        id: minMax
+        uses: step-security/terraform-min-max@v3
+        with:
+          directory: tests/0.13
+    outputs:
+      minVersion: ${{ steps.minMax.outputs.minVersion }}
+      maxVersion: ${{ steps.minMax.outputs.maxVersion }}
+
+  versionEvaluate:
+    name: Evaluate Min/Max Versions
+    runs-on: ubuntu-latest
+    needs: versionExtract
+    strategy:
+      matrix:
+        version:
+          - ${{ needs.versionExtract.outputs.minVersion }}
+          - ${{ needs.versionExtract.outputs.maxVersion }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Install Terraform v${{ matrix.version }}
+        uses: step-security/setup-terraform@v4
+        with:
+          terraform_version: ${{ matrix.version }}
+
+      - name: Initialize and validate v${{ matrix.version }}
+        run: |
+          cd tests/0.13
+          terraform init
+          terraform validate
+```

@@ -1,0 +1,43 @@
+{
+  "name": "terraform-min-max",
+  "version": "3.0.1",
+  "private": true,
+  "description": "GitHub action used to evaluate the Terraform minimum and maximum versions permitted",
+  "keywords": [
+    "github",
+    "actions",
+    "terraform"
+  ],
+  "homepage": "https://github.com/step-security/terraform-min-max#readme",
+  "bugs": {
+    "url": "https://github.com/step-security/terraform-min-max/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/step-security/terraform-min-max.git"
+  },
+  "license": "Apache-2.0",
+  "author": "step-security",
+  "main": "src/index.ts",
+  "scripts": {
+    "all": "npm run lint && npm run test && npm run compile",
+    "test": "vitest run",
+    "compile": "ncc build -m",
+    "lint": "eslint . --quiet --fix"
+  },
+  "dependencies": {
+    "@actions/core": "^3.0.1",
+    "axios": "^1.18.0",
+    "semver": "^7.8.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.0.0",
+    "@types/semver": "^7.7.1",
+    "@vercel/ncc": "^0.44.0",
+    "eslint": "^10.5.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.61.1",
+    "vitest": "^4.1.9"
+  }
+}
