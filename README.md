@@ -83,36 +83,3 @@ jobs:
           terraform init
           terraform validate
 ```
-
-## Getting Started
-
-The following instructions will help you get setup for development and testing purposes.
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) (v24+)
-- [npm](https://www.npmjs.com/) (included with Node.js)
-
-### Setup
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-### Development
-
-```bash
-# Run linting, tests, and compile
-npm run all
-
-# Run tests only
-npm run test
-
-# Run linting only
-npm run lint
-
-# Compile dist/index.js
-npm run compile
-```
